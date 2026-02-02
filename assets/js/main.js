@@ -8,7 +8,6 @@
   const startButton = document.getElementById("startButton");
   const message = document.getElementById("message");
   const hint = document.getElementById("hint");
-  const heroImage = document.getElementById("heroImage");
 
   /** @type {number | null} */
   let intervalId = null;
@@ -52,7 +51,6 @@
 
     if (startButton) startButton.hidden = true;
     if (hint) hint.hidden = true;
-    if (heroImage) heroImage.hidden = false;
     if (message) message.hidden = false;
 
     if (prefersReducedMotion) return;

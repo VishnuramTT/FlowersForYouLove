@@ -2,6 +2,9 @@
 :root {
   --bg0: #07080c;
   --bg1: #0b0b0b;
+  /* Background photo (put a file at assets/img/background.jpg or change this path) */
+  --bg-photo: url("../img/background.jpg");
+  --bg-photo-opacity: 0.22;
   --card: rgba(255, 255, 255, 0.06);
   --card-border: rgba(255, 255, 255, 0.12);
   --text: rgba(255, 255, 255, 0.92);
@@ -31,6 +34,22 @@ body {
     linear-gradient(180deg, var(--bg0), var(--bg1));
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   overflow: hidden;
+  position: relative;
+}
+
+/* Full-page background photo layer (kept subtle for readability) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--bg-photo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-photo-opacity);
+  filter: saturate(0.9) contrast(1.05);
 }
 
 .page {
@@ -53,17 +72,6 @@ body {
   position: relative;
   z-index: 2;
   isolation: isolate;
-}
-
-.hero {
-  display: block;
-  width: min(440px, 100%);
-  max-height: min(52vh, 460px);
-  object-fit: cover;
-  margin: 14px auto 10px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
 }
 
 .title {
