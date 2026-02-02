@@ -1,6 +1,7 @@
 (() => {
   const FLOWERS = ["🌸", "🌺", "🌷", "🌹", "💐"];
-  const BALLOONS = ["🎈", "🎈", "🎈", "🎉"];
+  const BALLOONS = ["🎈", "🎈", "🎈", "🎈"];
+  const POPPERS = ["🎉", "🎊", "✨", "🌟"];
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia &&
@@ -67,6 +68,27 @@
     el.style.animationDuration = `${duration}ms`;
 
     document.body.appendChild(el);
+
+    // Add sparkles/poppers that travel with the balloon.
+    const sparkleCount = Math.floor(rand(2, 5));
+    for (let i = 0; i < sparkleCount; i++) {
+      const s = document.createElement("span");
+      s.className = "sparkle";
+      s.textContent = pick(POPPERS);
+
+      const offsetX = rand(-24, 24);
+      const sparkleSize = rand(14, 22);
+      const sparkleDuration = duration * rand(0.75, 0.95);
+
+      s.style.left = `${x + offsetX}px`;
+      s.style.fontSize = `${sparkleSize}px`;
+      s.style.setProperty("--dx", `${driftX + rand(-25, 25)}px`);
+      s.style.setProperty("--rot", `${rotation + rand(-18, 18)}deg`);
+      s.style.animationDuration = `${sparkleDuration}ms`;
+
+      document.body.appendChild(s);
+      window.setTimeout(() => s.remove(), sparkleDuration + 400);
+    }
 
     window.setTimeout(() => {
       el.remove();

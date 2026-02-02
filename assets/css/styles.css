@@ -176,6 +176,21 @@ body::after {
   animation-iteration-count: 1;
 }
 
+.sparkle {
+  position: fixed;
+  bottom: -70px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+  opacity: 0.9;
+  will-change: transform, opacity;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
 @keyframes fall {
   to {
     transform: translate3d(var(--dx, 0px), 112vh, 0) rotate(var(--rot, 360deg));
@@ -210,6 +225,9 @@ body::after {
     display: none;
   }
   .balloon {
+    display: none;
+  }
+  .sparkle {
     display: none;
   }
 }
