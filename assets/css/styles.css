@@ -3,7 +3,8 @@
   --bg0: #07080c;
   --bg1: #0b0b0b;
   /* Background photo (put your image in assets/img and set the path here) */
-  --bg-photo: url("../img/WhatsApp%20Image%202026-02-02%20at%2014.24.19.jpeg");
+  /* NOTE: leave the spaces exactly as in the file name */
+  --bg-photo: url("../img/WhatsApp Image 2026-02-02 at 14.24.19.jpeg");
   --bg-photo-opacity: 0.28; /* photo strength */
   --bg-scrim-opacity: 0.55; /* dark overlay for readability */
   --card: rgba(255, 255, 255, 0.06);
