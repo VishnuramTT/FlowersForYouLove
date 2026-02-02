@@ -2,9 +2,10 @@
 :root {
   --bg0: #07080c;
   --bg1: #0b0b0b;
-  /* Background photo (put a file at assets/img/background.jpg or change this path) */
-  --bg-photo: url("../img/background.jpg");
-  --bg-photo-opacity: 0.22;
+  /* Background photo (put your image in assets/img and set the path here) */
+  --bg-photo: url("../img/WhatsApp%20Image%202026-02-02%20at%2014.24.19.jpeg");
+  --bg-photo-opacity: 0.22; /* photo strength */
+  --bg-scrim-opacity: 0.55; /* dark overlay for readability */
   --card: rgba(255, 255, 255, 0.06);
   --card-border: rgba(255, 255, 255, 0.12);
   --text: rgba(255, 255, 255, 0.92);
@@ -52,6 +53,20 @@ body::before {
   filter: saturate(0.9) contrast(1.05);
 }
 
+/* Dark overlay so text stays readable */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 50% 30%, rgba(255, 120, 190, 0.10), transparent 70%),
+    radial-gradient(800px 520px at 10% 90%, rgba(120, 210, 255, 0.08), transparent 60%),
+    radial-gradient(900px 520px at 90% 80%, rgba(255, 220, 140, 0.07), transparent 60%),
+    rgba(0, 0, 0, var(--bg-scrim-opacity));
+}
+
 .page {
   min-height: 100%;
   display: grid;
@@ -70,7 +85,7 @@ body::before {
   -webkit-backdrop-filter: blur(10px);
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   isolation: isolate;
 }
 
@@ -135,7 +150,7 @@ body::before {
   position: fixed;
   top: -60px;
   left: 0;
-  z-index: 0;
+  z-index: 2;
   pointer-events: none;
   user-select: none;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
