@@ -1,5 +1,6 @@
 (() => {
   const FLOWERS = ["🌸", "🌺", "🌷", "🌹", "💐"];
+  const BALLOONS = ["🎈", "🎈", "🎈", "🎉"];
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia &&
@@ -10,7 +11,9 @@
   const hint = document.getElementById("hint");
 
   /** @type {number | null} */
-  let intervalId = null;
+  let flowerIntervalId = null;
+  /** @type {number | null} */
+  let balloonIntervalId = null;
 
   function rand(min, max) {
     return Math.random() * (max - min) + min;
@@ -46,8 +49,32 @@
     }, duration + 400);
   }
 
+  function createBalloon() {
+    const el = document.createElement("span");
+    el.className = "balloon";
+    el.textContent = pick(BALLOONS);
+
+    const x = rand(0, window.innerWidth);
+    const size = rand(22, 44);
+    const duration = rand(5200, 10000); // ms
+    const driftX = rand(-60, 60); // px
+    const rotation = rand(-14, 14); // deg
+
+    el.style.left = `${x}px`;
+    el.style.fontSize = `${size}px`;
+    el.style.setProperty("--dx", `${driftX}px`);
+    el.style.setProperty("--rot", `${rotation}deg`);
+    el.style.animationDuration = `${duration}ms`;
+
+    document.body.appendChild(el);
+
+    window.setTimeout(() => {
+      el.remove();
+    }, duration + 400);
+  }
+
   function start() {
-    if (intervalId !== null) return; // prevent double-start
+    if (flowerIntervalId !== null || balloonIntervalId !== null) return; // prevent double-start
 
     if (startButton) startButton.hidden = true;
     if (hint) hint.hidden = true;
@@ -57,7 +84,10 @@
 
     // Initial burst looks nicer than waiting for the first interval tick
     for (let i = 0; i < 10; i++) createFlower();
-    intervalId = window.setInterval(createFlower, 220);
+    for (let i = 0; i < 4; i++) createBalloon();
+
+    flowerIntervalId = window.setInterval(createFlower, 220);
+    balloonIntervalId = window.setInterval(createBalloon, 900);
   }
 
   if (startButton) {

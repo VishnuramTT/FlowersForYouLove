@@ -161,10 +161,32 @@ body::after {
   animation-iteration-count: 1;
 }
 
+.balloon {
+  position: fixed;
+  bottom: -70px;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+  opacity: 0.92;
+  will-change: transform, opacity;
+  animation-name: floatUp;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
 @keyframes fall {
   to {
     transform: translate3d(var(--dx, 0px), 112vh, 0) rotate(var(--rot, 360deg));
     opacity: 0.2;
+  }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translate3d(var(--dx, 0px), -118vh, 0) rotate(var(--rot, -8deg));
+    opacity: 0.15;
   }
 }
 
@@ -185,6 +207,9 @@ body::after {
     animation: none;
   }
   .flower {
+    display: none;
+  }
+  .balloon {
     display: none;
   }
 }
