@@ -4,7 +4,7 @@
   --bg1: #0b0b0b;
   /* Background photo (put your image in assets/img and set the path here) */
   --bg-photo: url("../img/WhatsApp%20Image%202026-02-02%20at%2014.24.19.jpeg");
-  --bg-photo-opacity: 0.22; /* photo strength */
+  --bg-photo-opacity: 0.28; /* photo strength */
   --bg-scrim-opacity: 0.55; /* dark overlay for readability */
   --card: rgba(255, 255, 255, 0.06);
   --card-border: rgba(255, 255, 255, 0.12);
